@@ -14,6 +14,47 @@
     line-height: 1;
     display: inline-block;
   }
+
+  /* Equal Height Product Cards */
+  .product-item {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .product-item .card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .product-item .card-product {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .product-item .card-information {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+
+  .product-item .card-information__wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-item .card-price {
+    margin-top: auto;
+  }
+
+  /* 確保床褥標籤在底部 */
+  .product-item .mattress-tags {
+    margin-top: auto;
+  }
 </style>
 
 {% comment %}
