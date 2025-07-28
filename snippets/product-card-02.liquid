@@ -15,70 +15,84 @@
     display: inline-block;
   }
 
-  /* Equal Height Product Cards */
-  .productGrid .product,
-  .productList .product {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  /* Equal Height Product Cards - 使用更強的選擇器 */
+  .productListing.productGrid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: stretch !important;
   }
 
-  .productGrid .product .product-item,
-  .productList .product .product-item {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    flex-grow: 1;
+  .productListing.productGrid .product {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    align-items: stretch !important;
   }
 
-  .productGrid .product .product-item .card,
-  .productList .product .product-item .card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  .productListing.productGrid .product .product-item {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    flex-grow: 1 !important;
   }
 
-  .productGrid .product .product-item .card-product,
-  .productList .product .product-item .card-product {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  .productListing.productGrid .product .product-item .card {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    flex-grow: 1 !important;
   }
 
-  .productGrid .product .product-item .card-information,
-  .productList .product .product-item .card-information {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+  .productListing.productGrid .product .product-item .card-product {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-grow: 1 !important;
   }
 
-  .productGrid .product .product-item .card-information__wrapper,
-  .productList .product .product-item .card-information__wrapper {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+  .productListing.productGrid .product .product-item .card-information {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-grow: 1 !important;
+    margin-top: auto !important;
   }
 
-  .productGrid .product .product-item .card-price,
-  .productList .product .product-item .card-price {
-    margin-top: auto;
+  .productListing.productGrid .product .product-item .card-information__wrapper {
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .productListing.productGrid .product .product-item .card-price {
+    margin-top: auto !important;
   }
 
   /* 確保床褥標籤在底部 */
-  .productGrid .product .product-item .mattress-tags,
-  .productList .product .product-item .mattress-tags {
-    margin-top: auto;
+  .productListing.productGrid .product .product-item .mattress-tags {
+    margin-top: auto !important;
   }
 
-  /* 確保產品網格行有相同高度 */
-  .productGrid {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
+  /* 針對不同列數的網格 */
+  .productListing.productGrid.column-2,
+  .productListing.productGrid.column-3,
+  .productListing.productGrid.column-4,
+  .productListing.productGrid.column-5 {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: stretch !important;
   }
 
-  .productGrid .product {
-    display: flex;
+  /* 確保在所有斷點都有效 */
+  @media (min-width: 1025px) {
+    .productListing.productGrid {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      align-items: stretch !important;
+    }
+
+    .productListing.productGrid .product {
+      display: flex !important;
+      align-items: stretch !important;
+    }
   }
 </style>
 
