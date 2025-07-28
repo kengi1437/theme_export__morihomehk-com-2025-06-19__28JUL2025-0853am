@@ -15,7 +15,74 @@
     display: inline-block;
   }
 
-  /* Equal Height Product Cards - 使用更強的選擇器 */
+  /* Equal Height Product Cards - 針對實際的HTML結構 */
+
+  /* 針對 products-grid 結構 */
+  .products-grid.products-load {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: stretch !important;
+  }
+
+  .products-grid.products-load .product {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .products-grid .product .product-item {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    flex-grow: 1 !important;
+  }
+
+  .products-grid .product .product-item .card {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    flex-grow: 1 !important;
+  }
+
+  .products-grid .product .product-item .card-product {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-grow: 1 !important;
+  }
+
+  .products-grid .product .product-item .card-information {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-grow: 1 !important;
+    margin-top: auto !important;
+  }
+
+  .products-grid .product .product-item .card-information__wrapper {
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .products-grid .product .product-item .card-price {
+    margin-top: auto !important;
+  }
+
+  /* 確保床褥標籤在底部 */
+  .products-grid .product .product-item .mattress-tags {
+    margin-top: auto !important;
+  }
+
+  /* 針對不同列數的網格 */
+  .products-grid.column-2,
+  .products-grid.column-3,
+  .products-grid.column-4,
+  .products-grid.column-5 {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: stretch !important;
+  }
+
+  /* 也支援 productListing 結構（以防萬一） */
   .productListing.productGrid {
     display: flex !important;
     flex-wrap: wrap !important;
@@ -24,72 +91,22 @@
 
   .productListing.productGrid .product {
     display: flex !important;
-    flex-direction: column !important;
-    height: auto !important;
-    align-items: stretch !important;
-  }
-
-  .productListing.productGrid .product .product-item {
-    display: flex !important;
-    flex-direction: column !important;
-    height: 100% !important;
-    flex-grow: 1 !important;
-  }
-
-  .productListing.productGrid .product .product-item .card {
-    display: flex !important;
-    flex-direction: column !important;
-    height: 100% !important;
-    flex-grow: 1 !important;
-  }
-
-  .productListing.productGrid .product .product-item .card-product {
-    display: flex !important;
-    flex-direction: column !important;
-    flex-grow: 1 !important;
-  }
-
-  .productListing.productGrid .product .product-item .card-information {
-    display: flex !important;
-    flex-direction: column !important;
-    flex-grow: 1 !important;
-    margin-top: auto !important;
-  }
-
-  .productListing.productGrid .product .product-item .card-information__wrapper {
-    flex-grow: 1 !important;
-    display: flex !important;
-    flex-direction: column !important;
-  }
-
-  .productListing.productGrid .product .product-item .card-price {
-    margin-top: auto !important;
-  }
-
-  /* 確保床褥標籤在底部 */
-  .productListing.productGrid .product .product-item .mattress-tags {
-    margin-top: auto !important;
-  }
-
-  /* 針對不同列數的網格 */
-  .productListing.productGrid.column-2,
-  .productListing.productGrid.column-3,
-  .productListing.productGrid.column-4,
-  .productListing.productGrid.column-5 {
-    display: flex !important;
-    flex-wrap: wrap !important;
     align-items: stretch !important;
   }
 
   /* 確保在所有斷點都有效 */
   @media (min-width: 1025px) {
-    .productListing.productGrid {
+    .products-grid.products-load,
+    .products-grid.column-2,
+    .products-grid.column-3,
+    .products-grid.column-4,
+    .products-grid.column-5 {
       display: flex !important;
       flex-wrap: wrap !important;
       align-items: stretch !important;
     }
 
-    .productListing.productGrid .product {
+    .products-grid .product {
       display: flex !important;
       align-items: stretch !important;
     }
