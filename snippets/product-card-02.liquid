@@ -430,7 +430,7 @@
             {%- endif -%}
 
             {%- comment -%} 床褥產品標籤顯示功能 {%- endcomment -%}
-            {%- if product_card_product.type contains '床褥' and product_card_product.tags.size > 0 -%}
+            {%- if product_card_product.type contains 'Mattress' and product_card_product.tags.size > 0 -%}
                 {%- assign tag_list = '' -%}
                 {%- assign has_valid_tags = false -%}
                 {%- for tag in product_card_product.tags -%}
