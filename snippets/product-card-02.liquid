@@ -229,7 +229,7 @@
                         {% endif %}
                     </span>
                 </a>
-<!-- Start of Judge.me code -->
+    <!-- Start of Judge.me code -->
       <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product_card_product.id }}' data-auto-install='false'>
         {{ product_card_product.metafields.judgeme.badge }}
       </div>
@@ -299,7 +299,7 @@
                         {% endif %}
                     </span>
                 </a>
-<!-- Start of Judge.me code -->
+    <!-- Start of Judge.me code -->
       <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product_card_product.id }}' data-auto-install='false'>
         {{ product_card_product.metafields.judgeme.badge }}
       </div>
@@ -427,6 +427,21 @@
                         %}
                     </div>
                 {%- endif -%}
+            {%- endif -%}
+
+            {%- comment -%} 床褥產品標籤顯示功能 {%- endcomment -%}
+            {%- if product_card_product.type == 'Mattress 床褥' and product_card_product.tags.size > 0 -%}
+                <div class="mattress-tags" style="margin-top: 10px; padding: 8px; background-color: #f8f8f8; border-radius: 4px; font-size: 12px; color: #666;">
+                    {%- assign tag_list = '' -%}
+                    {%- for tag in product_card_product.tags -%}
+                        {%- if forloop.first -%}
+                            {%- assign tag_list = tag -%}
+                        {%- else -%}
+                            {%- assign tag_list = tag_list | append: ' | ' | append: tag -%}
+                        {%- endif -%}
+                    {%- endfor -%}
+                    {{ tag_list }}
+                </div>
             {%- endif -%}
 
         </div>
