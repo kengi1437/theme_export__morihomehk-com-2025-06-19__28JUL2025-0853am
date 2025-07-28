@@ -430,12 +430,6 @@
             {%- endif -%}
 
             {%- comment -%} 床褥產品標籤顯示功能 {%- endcomment -%}
-
-            {%- comment -%} 臨時調試信息 - 可以在測試後移除 {%- endcomment -%}
-            <div style="font-size: 10px; color: #999; margin-top: 5px;">
-                調試: 類型="{{ product_card_product.type | escape }}" | 標籤數={{ product_card_product.tags.size }}
-            </div>
-
             {%- if product_card_product.type contains '床褥' and product_card_product.tags.size > 0 -%}
                 <div class="mattress-tags" style="margin-top: 10px; padding: 8px; background-color: #f8f8f8; border-radius: 4px; font-size: 12px; color: #666;">
                     {%- assign tag_list = '' -%}
@@ -446,7 +440,7 @@
                             {%- assign tag_list = tag_list | append: ' | ' | append: tag -%}
                         {%- endif -%}
                     {%- endfor -%}
-                    標籤: {{ tag_list }}
+                    {{ tag_list }}
                 </div>
             {%- endif -%}
 
