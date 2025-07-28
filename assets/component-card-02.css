@@ -822,7 +822,6 @@
   }
 
   .products-grid .product .product-item .card-information__wrapper {
-    flex-grow: 1 !important;
     display: flex !important;
     flex-direction: column !important;
   }
