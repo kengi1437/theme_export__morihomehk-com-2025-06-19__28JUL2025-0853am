@@ -830,11 +830,6 @@
     margin-top: auto !important;
   }
 
-  /* 確保床褥標籤在底部 */
-  .products-grid .product .product-item .mattress-tags {
-    margin-top: auto !important;
-  }
-
   /* 針對不同列數的網格 */
   .products-grid.column-2,
   .products-grid.column-3,
