@@ -1,0 +1,168 @@
+/* Custom Tab Pages Styling */
+
+/* Custom tab page container */
+.custom-tab-page {
+    margin-bottom: 1.5rem;
+}
+
+.custom-tab-page:last-child {
+    margin-bottom: 0;
+}
+
+/* Hidden checkbox for pure CSS accordion */
+.custom-tab-page .page-toggle {
+    display: none !important;
+}
+
+/* Page title styling - clickable accordion header */
+.custom-tab-page .page-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    padding: 1rem 2.5rem 1rem 0;
+    border-bottom: 2px solid #f0f0f0;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    user-select: none;
+    display: block;
+}
+
+.custom-tab-page .page-title:hover {
+    color: #007cba;
+    background-color: #f8f9fa;
+}
+
+/* Accordion arrow indicator */
+.custom-tab-page .page-title::after {
+    content: '▼';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    color: #666;
+    transition: transform 0.3s ease;
+}
+
+/* When checkbox is checked, rotate arrow */
+.custom-tab-page .page-toggle:checked + .page-title::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+/* Page content styling - collapsible */
+.custom-tab-page .page-content {
+    line-height: 1.6;
+    color: #555;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0;
+}
+
+/* When checkbox is checked, expand content */
+.custom-tab-page .page-toggle:checked ~ .page-content {
+    max-height: 1000px; /* Adjust based on your content */
+    padding: 1rem 0;
+}
+
+/* Page separator styling */
+.page-separator {
+    margin: 2.5rem 0;
+    padding: 0;
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    background: transparent;
+    height: 1px;
+    position: relative;
+}
+
+.page-separator::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ccc, transparent);
+}
+
+.page-separator::after {
+    content: '• • •';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 0 15px;
+    color: #ccc;
+    font-size: 12px;
+    letter-spacing: 4px;
+}
+
+/* Custom tab content styling */
+.halo-text-format .tab-content {
+    line-height: 1.6;
+}
+
+.halo-text-format .tab-content h1,
+.halo-text-format .tab-content h2,
+.halo-text-format .tab-content h3,
+.halo-text-format .tab-content h4,
+.halo-text-format .tab-content h5,
+.halo-text-format .tab-content h6 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.halo-text-format .tab-content p {
+    margin-bottom: 1rem;
+}
+
+.halo-text-format .tab-content ul,
+.halo-text-format .tab-content ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+}
+
+.halo-text-format .tab-content li {
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .page-separator {
+        margin: 1.5rem 0;
+    }
+    
+    .page-separator::before {
+        width: 30px;
+    }
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+    .page-separator {
+        border-top-color: #333;
+    }
+
+    .page-separator::before {
+        background: linear-gradient(90deg, transparent, #555, transparent);
+    }
+
+    .custom-tab-page .page-title {
+        color: #e0e0e0;
+        border-bottom-color: #444;
+    }
+
+    .custom-tab-page .page-title:hover {
+        color: #4fc3f7;
+        background-color: #2a2a2a;
+    }
+
+    .custom-tab-page .page-content {
+        color: #ccc;
+    }
+}
