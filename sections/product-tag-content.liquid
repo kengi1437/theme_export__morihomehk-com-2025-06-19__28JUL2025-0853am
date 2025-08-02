@@ -1,3 +1,5 @@
+{{ 'component-tab.css' | asset_url | stylesheet_tag }}
+
 <div class="page-width">
     {% for tag in shop.metafields.tags_name %}
         {% assign key = tag[0] %}
@@ -11,6 +13,8 @@
         {% endif %}
     {% endfor %}
 </div>
+
+<script src="{{ 'collapsible-tabs.js' | asset_url }}" defer></script>
 
 {% schema %}
     {
