@@ -971,7 +971,8 @@
     "custom_css": [
       ".card {border-radius: 10px 10px 0 0;}",
       ".card-media {border-radius: 10px 10px 0 0;}",
-      "html {scroll-behavior: smooth;}"
+      "html {scroll-behavior: smooth;}",
+      "#judgeme_product_reviews {width: 90% !important; max-width: 1400px !important; margin: 0 auto !important;}"
     ]
   }
 }
