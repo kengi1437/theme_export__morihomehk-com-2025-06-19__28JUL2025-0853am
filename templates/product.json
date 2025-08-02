@@ -330,11 +330,6 @@
         "mg_bottom_mobile": 0
       }
     },
-    "product_tag_content_ziCnt6": {
-      "type": "product-tag-content",
-      "name": "Product tag content",
-      "settings": {}
-    },
     "17499739865736e590": {
       "type": "apps",
       "blocks": {
@@ -459,7 +454,6 @@
   },
   "order": [
     "main",
-    "product_tag_content_ziCnt6",
     "17499739865736e590",
     "product-recommendations",
     "product-recently-viewed"
