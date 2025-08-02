@@ -50,16 +50,23 @@
 				            	assign has_tab = false
 				            endif
 				        elsif block.settings.type == 'custom_tab_metafield'
-				        	if product.metafields.custom.tab != blank
-				        		assign metafield_value = product.metafields.custom.tab | strip
-				        		if metafield_value contains 'gid://shopify/OnlineStorePage/'
-				        			assign has_tab = true
-				        		else
-				        			assign has_tab = false
+
+				        	assign has_matching_pages = false
+				        	for tag in product.tags
+				        		assign tag_lower = tag | downcase | strip
+				        		for page in pages
+				        			assign page_title_lower = page.title | downcase | strip
+				        			assign page_handle_lower = page.handle | downcase | strip
+				        			if page_title_lower == tag_lower or page_handle_lower == tag_lower
+				        				assign has_matching_pages = true
+				        				break
+				        			endif
+				        		endfor
+				        		if has_matching_pages
+				        			break
 				        		endif
-				        	else
-				        		assign has_tab = false
-				        	endif
+				        	endfor
+				        	assign has_tab = true
 				        else
 				        	assign has_tab = true
 				        endif
@@ -106,59 +113,49 @@
 			            	assign has_tab = false
 			            endif
 			        elsif block.settings.type == 'custom_tab_metafield'
-			        	if product.metafields.custom.tab != blank
-			        		assign metafield_value = product.metafields.custom.tab | strip
-			        		if metafield_value contains 'gid://shopify/OnlineStorePage/'
-			        			assign has_tab = true
-			        			assign content = ''
-			        			assign page_gids = metafield_value | remove: '[' | remove: ']' | remove: '"' | split: ','
-			        			assign pages_found = 0
 
-			        			for page_gid in page_gids
-			        				assign clean_gid = page_gid | strip
-			        				assign page_id = clean_gid | split: '/' | last
+			        	assign matched_pages = ''
+			        	assign pages_found = 0
 
-			        				comment
-			        				Try to find the page by iterating through all pages
-			        				Since we can't access pages by ID directly, we need to check all pages
-			        				endcomment
 
-			        				for page in pages
-			        					assign page_id_str = page.id | append: ''
-			        					if page_id_str == page_id
-			        						assign pages_found = pages_found | plus: 1
-			        						unless content == ''
-			        							assign content = content | append: '<div class="page-separator"></div>'
-			        						endunless
-			        						assign page_id = 'page-' | append: forloop.index
-			        						assign content = content | append: '<div class="custom-tab-page">'
-			        						assign content = content | append: '<input type="checkbox" id="' | append: page_id | append: '" class="page-toggle" style="display: none;">'
-			        						assign content = content | append: '<label for="' | append: page_id | append: '" class="page-title">' | append: page.title | append: '</label>'
-			        						assign content = content | append: '<div class="page-content">' | append: page.content | append: '</div>'
-			        						assign content = content | append: '</div>'
-			        						break
-			        					endif
-			        				endfor
-			        			endfor
+			        	for tag in product.tags
+			        		assign tag_lower = tag | downcase | strip
 
-			        			if pages_found == 0
-			        				assign content = '<div style="background: #fff3cd; padding: 15px; border: 1px solid #ffc107; margin: 10px 0;">'
-			        				assign content = content | append: '<h4>頁面內容載入中...</h4>'
-			        				assign content = content | append: '<p>找到 ' | append: page_gids.size | append: ' 個頁面引用，但無法直接載入內容。</p>'
-			        				assign content = content | append: '<p>這可能是因為頁面權限設置或 Liquid 限制。</p>'
-			        				assign content = content | append: '<p><strong>頁面 ID:</strong></p><ul>'
-			        				for page_gid in page_gids
-			        					assign clean_gid = page_gid | strip
-			        					assign page_id = clean_gid | split: '/' | last
-			        					assign content = content | append: '<li>' | append: page_id | append: '</li>'
-			        				endfor
-			        				assign content = content | append: '</ul></div>'
+
+			        		for page in pages
+			        			assign page_title_lower = page.title | downcase | strip
+			        			assign page_handle_lower = page.handle | downcase | strip
+
+
+			        			if page_title_lower == tag_lower or page_handle_lower == tag_lower
+			        				assign pages_found = pages_found | plus: 1
+			        				assign page_id = 'auto-page-' | append: pages_found
+
+			        				unless matched_pages == ''
+			        					assign matched_pages = matched_pages | append: '<div class="page-separator"></div>'
+			        				endunless
+
+			        				assign matched_pages = matched_pages | append: '<div class="custom-tab-page">'
+			        				assign matched_pages = matched_pages | append: '<input type="checkbox" id="' | append: page_id | append: '" class="page-toggle" style="display: none;">'
+			        				assign matched_pages = matched_pages | append: '<label for="' | append: page_id | append: '" class="page-title">' | append: page.title | append: '</label>'
+			        				assign matched_pages = matched_pages | append: '<div class="page-content">' | append: page.content | append: '</div>'
+			        				assign matched_pages = matched_pages | append: '</div>'
+			        				break
 			        			endif
-			        		else
-			        			assign has_tab = false
-			        		endif
+			        		endfor
+			        	endfor
+
+			        	if pages_found > 0
+			        		assign has_tab = true
+			        		assign content = matched_pages
 			        	else
-			        		assign has_tab = false
+			        		assign has_tab = true
+			        		assign content = '<div style="background: #e3f2fd; padding: 15px; border: 1px solid #2196f3; margin: 10px 0;">'
+			        		assign content = content | append: '<h4>自動匹配頁面</h4>'
+			        		assign content = content | append: '<p><strong>商品標籤:</strong> ' | append: product.tags | join: ', ' | append: '</p>'
+			        		assign content = content | append: '<p>未找到與商品標籤匹配的頁面。</p>'
+			        		assign content = content | append: '<p><em>系統會自動尋找標題與商品標籤相同的頁面。</em></p>'
+			        		assign content = content | append: '</div>'
 			        	endif
 			        else
 			        	assign has_tab = true
