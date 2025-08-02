@@ -1,0 +1,26 @@
+<div class="page-width">
+    {% for tag in shop.metafields.tags_name %}
+        {% assign key = tag[0] %}
+        {% assign display_name = shop.metafields.tags_display_name[key] %}
+        {% assign tag_name = shop.metafields.tags_name[key] %}
+        {% assign content = shop.metafields.tags_description[key] %}
+        {% assign product_tags = product.tags | join: ',' %}
+        {% assign tab_id = product.id | append: key  %}
+        {% if product_tags contains tag_name %}
+            {%- render 'tab', id: tab_id , title: display_name, content: content -%}
+        {% endif %}
+    {% endfor %}
+</div>
+
+{% schema %}
+    {
+      "name": "Product tag content",
+      "class": "product-tag-content",
+      "settings": [
+      ],
+      "presets": [{
+        "name": "Product tag content",
+        "category": "Text"
+      }]
+    }
+  {% endschema %}
